@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ lang | default(value="en-US" ) }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/main.css">
+  <title>{%- block title %}{{ config.title }}{%- endblock %}</title>
+  {% include "seo_tags.html" ignore missing %}
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  {%- if config.generate_feed %}
+  {% block rss -%}
+  <link rel="alternate" type={% if config.feed_filename == "atom.xml" %}"application/atom+xml"{% else %}"application/rss+xml"{% endif %} title="{{ config.title }}" href="{{ get_url(path=config.feed_filename) | safe }}">
+  {%- endblock -%}
+  {%- endif %}
+  {% include "custom_head.html" ignore missing -%}
+</head>
+<body>
+  {% block header %}
+    {% include "header.html" ignore missing -%}
+  {% endblock %}
+  {% block main %}{%- endblock -%}
+  {% include "footer.html" ignore missing -%}
+  {% include "custom_body.html" ignore missing -%}
+</body>
+</html>

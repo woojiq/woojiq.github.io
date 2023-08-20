@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+  {%- if not page.extra.menu %}
+    <h1>
+    {{ page.title }}
+    {%- if page.date %}
+      <small>
+          <time datetime='{{ page.date | date(format='%+') }}' pubdate>
+            {{- page.date | date(format=config.extra.date_format) -}}
+          </time>
+          on
+          <a href="{{ get_url(path="") }}">{{ config.title }}</a>
+      </small>
+    {%- endif %}
+    </h1>
+  {%- endif %}
+  <main>
+    {{ page.content | safe }}
+  </main>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block main %}
+  {% if section.extra.section_path -%}
+    {% set section = get_section(path=section.extra.section_path) %}
+  {% endif -%}
+  <main>
+    <ul class="blog-posts">
+      {% set pages_num = section.pages | length %}
+
+      {% for page in section.pages %}
+        <li>
+          <span>#{{ pages_num - loop.index0 }}</span>
+          <div>
+            <a href="{{ page.permalink }}">{{ page.title }}</a>
+            <small><span><br>{{ page.date }}</span></small>
+          </div>
+        </li>
+        {% else %}
+        <li>
+          No posts yet
+        </li>
+      {% endfor %}
+    </ul>
+  </main>
+{% endblock %}
