@@ -1,6 +1,6 @@
 +++
 title = "My first patch"
-slug = "my-first-patch"
+# slug = "my-first-patch"
 date = 2023-08-16
 draft = false
 

@@ -5,11 +5,9 @@ template = "about.html"
 Student of Taras Shevchenko Kyiv National University - Software Engineering. A former lover of competitive programming. FOSS contribution enjoyer.
 
 ### Developer path
-**Goal**: Get a job at a company I respect: Netflix, Ferrari, Red Bull.
+**Goal**: Get a job in the company of my dreams: Netflix, Ferrari.
 
-**Status**: Unemployed student w/o commercial experience.
-
-**Plans**: Become a solid rock on Github and get my first software engineering job.
+**Plans**: Progress in my current job until I realize that I need to take the next big step.
 
 [Github][github] ~ [Mail][linkedin]
 

@@ -1,6 +1,6 @@
 +++
 title = "Am I actually that bad?"
-slug = "am-i-actually-that-bad"
+# slug = "am-i-actually-that-bad"
 date = 2023-11-01
 draft = false
 
