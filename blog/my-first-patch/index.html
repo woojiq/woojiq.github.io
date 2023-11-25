@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/main.css">
+  <title>woojiq&#x27;s blog</title>
+  
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  </head>
+<body>
+  
+
+  
+    <h1>
+    My first patch
+      <small>
+          <time datetime='2023-08-16T00:00:00+00:00' pubdate>16 Aug, 2023</time>
+          on
+          <a href="https://woojiq.github.io">woojiq&#x27;s blog</a>
+      </small>
+    </h1>
+  <main>
+    <blockquote>
+<p>Article is translated with the assistance of ChatGPT.</p>
+</blockquote>
+<p>On August 16th, after two years of studying at the university, I found myself trying to make contributions to open-source projects to compensate for my lack of real-world experience. During a break between contributions to helix (9 pool requests, half of them were closed), I noticed that swappy doesn’t support layouts other than English, and it’s not very convenient to switch layouts when taking screenshots quicky. My time has come, I need to fix it.</p>
+<h2 id="swappy">Swappy<a class="zola-anchor" href="#swappy" aria-label="Anchor link for: swappy">#</a>
+</h2>
+<blockquote>
+<p><a rel="noopener" target="_blank" href="https://github.com/jtheoof/swappy/">A Wayland native snapshot editing tool, inspired by Snappy on macOS.</a></p>
+</blockquote>
+<p>There’s a small issue – this repository hasn’t been updated for a long time. There are occasional commits, but they’re not enough to create a PR that would get merged, given the author’s inactivity. I understand that open-source projects are generally unpaid endeavors, but I need to continue using the application somehow. Switching to a different application isn’t always feasible if swappy is still useful despite being outdated. In another project, I would create a PR for such changes. But in this case it wouldn’t be merged, so the only way forward is to patch it for myself. It was difficult to adjust to this because if one of my motivations for contributing to open source is to have a nice GitHub profile for aesthetics, then in this case, that won’t apply. It won’t be added to the profile as “you created a PR with 200 lines of code”.</p>
+<h2 id="nixos">NixOs<a class="zola-anchor" href="#nixos" aria-label="Anchor link for: nixos">#</a>
+</h2>
+<p>Luckily, I use <a rel="noopener" target="_blank" href="https://nixos.org/">NixOs</a>, which makes this process simple enough through overlays. It was still a bit complex, and it took me some time to figure out how to combine overlays with home-manager, but that’s a different story. The idea is that I can either use a pre-built project from <a rel="noopener" target="_blank" href="https://github.com/nixos/nixpkgs/">nixpkgs</a> or modify various attributes of a package (add patches, change dependencies, etc.). While this might be possible in other distributions too, I wasn’t interested. Anyway, I could just clone the repository. So, I realized that I wanted to patch swappy to support different keyboard layouts. Since it’s a personal patch, adding Ukrainian layout support would be sufficient (hardcoded).</p>
+<h2 id="clangd-meson-headers-on-nixos">Clangd &amp; Meson &amp; Headers on NixOs<a class="zola-anchor" href="#clangd-meson-headers-on-nixos" aria-label="Anchor link for: clangd-meson-headers-on-nixos">#</a>
+</h2>
+<p>Initially, I needed to set up a development environment for C because I had only been working with Rust on NixOs. After my experience with excellent Rust tools (rust-analyzer, cargo), I needed at least a C language server. I required a <code>flake.nix</code> file with instructions to build the project and include devShell with C language server. I managed to create the first part quite easily, and within 20-30 minutes, I had a local build of swappy using <code>flake.nix</code>. In essence, I took <a rel="noopener" target="_blank" href="https://github.com/NixOS/nixpkgs/blob/b5116310bce262bfdf6653a7df7421ee468ca6b8/pkgs/applications/misc/swappy/default.nix"><code>default.nix</code></a> from <code>nixpkgs</code> and converted it to a flake. Everything seemed fine until I added clangd to devShell and ran <code>nix develop</code>, but something went wrong. I recalled from past attempts that dealing with libraries in NixOs could be complicated (in hindsight, the approach is logical, but not when you are beginner or in a hurry and don’t have time to read all the documentation). The language server wasn’t finding headers for gtk/gdk. I spent an hour on this, to no avail. Frustrated, I gave up and went for a walk, convinced that I’d never need C anyway. I could have gone down that path if I hadn’t believed in myself. I realized that if I couldn’t write a line of C code and set up a C development environment, then why bother with NixOs if it’s all problems? It had to be solved because accumulating such grievances would have driven me to install Windows – a critical mistake. So, I googled a lot, asked ChatGPT for help, until I finally understood that clangd takes header locations from the <code>compile_commands.json</code> file generated by meson. I wasn’t well-versed in the inner workings of meson, meson vs make, and so on, but I knew I needed to run <code>meson setup build</code>. I ran it several times, and it indicated the missing components in my devShell. I added pango, cairo, and other dependencies, and meson eventually generated the required file. Joy knew no bounds – my language server was working, and I could write C code about 4 hours of setup.</p>
+<h2 id="c-what-the">C, What the?<a class="zola-anchor" href="#c-what-the" aria-label="Anchor link for: c-what-the">#</a>
+</h2>
+<p>However, understanding C wasn’t straightforward. After half a year in the Rust bubble, it was challenging to grasp the concept of simple pointers, the absence of needing <code>mut</code>, and the absence of a borrow checker. Also, there were lots of <code>*</code> and unfamiliar data types (<code>Gtk...</code>). But fortunately, I was previously familiar with C++ because I was a fan of competitive programming in school, so I’m somewhat acquainted with the syntax. Thankfully, using <code>ctrl-f</code> and GitHub, I quickly learned where to find the relevant code. I didn’t need to understand the inner workings deeply – I just needed to make gtk layout-agnostic. Later, I realized that this was essentially binding actions to hardware keycodes. Everything I found online that could help was a single <a rel="noopener" target="_blank" href="https://stackoverflow.com/questions/56951698/how-to-convert-gtk-keyboard-event-keys-to-english-in-any-language-layouts">question</a> on stackoverflow with just one comment. Then I tried to understand how to use this information, asking ChatGPT, but as usual, it couldn’t handle complex queries. I have a hunch as to why this didn’t work, but I don’t want to voice it because I’m not well-versed in gtk at all. So, I came up with a neat trick. Initially, since this was a personal patch, I thought I could simply add checks for all Ukrainian keys, like <code>GDK_KEY_Ukrainian_i</code>. But then, I realized that using <code>event-&gt;hardware_keycode</code> would work just as well. So, that’s what I did. I’m not sure if it’s a good solution overall, but it works for me. There’s one downside to my solution, though, which makes me understand that while it’s generally better than the previous one, it still inaccurate sometimes.. If a user is using a layout other than QWERTY, copying in English won’t be <code>ctrl-c</code> but <code>ctrl-j</code> (Dvorak), for example. I’ve never used other layouts, so I don’t know what’s more convenient for them. Either way, it doesn’t work perfectly for these cases, so making a PR doesn’t make much sense. Thus, I created a patch of around 200 lines of deletions and additions. I tested it and it was time to integrate it into my working environment.</p>
+<h2 id="overlay">Overlay<a class="zola-anchor" href="#overlay" aria-label="Anchor link for: overlay">#</a>
+</h2>
+<p>After extracting and saving the patch, I started attempts to integrate it into my <code>flake.nix</code> so that all applications would use the patched version (patch is a very cute word). After 10 hours of work, from morning till evening, I finally managed to take a screenshot using the Ukrainian layout. I’m incredibly proud of this achievement. This is my first personal patch. I posted this solution in the <a rel="noopener" target="_blank" href="https://github.com/jtheoof/swappy/issues/122">issue</a>; maybe someone will find it useful.</p>
+<h2 id="output-not-flake-s">Output (not flake’s)<a class="zola-anchor" href="#output-not-flake-s" aria-label="Anchor link for: output-not-flake-s">#</a>
+</h2>
+<p>Spending 10 hours of my day, I learned a lot of new things. And since it’s summer university vacation, I have no regrets about diving into this. I gained insights into Nix and C. But most importantly, those 200 lines of code gave me the realization that I can change software for my needs. And that’s an incredible feeling. It was somewhat reminiscent of when my first PR got merged. Plus, I didn’t clutter my computer with unnecessary stuff because nix package manager will remove it if I don’t need it, and that’s cool. It’s fascinating how one problem that doesn’t affect anything can bring so much into life, just because you decided to solve it😌.</p>
+
+  </main>
+<footer>
+  <small>
+    <a href="https://github.com/woojiq/woojiq.github.io">src</a> |
+    <a href="https://woojiq.github.io/blog/atom.xml">rss</a>
+  </small>
+</footer>
+</body>
+</html>

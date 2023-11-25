@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/main.css">
+  <title>woojiq&#x27;s blog</title>
+  
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  </head>
+<body>
+  
+
+  
+    <h1>
+    Job from the first try
+      <small>
+          <time datetime='2023-11-23T00:00:00+00:00' pubdate>23 Nov, 2023</time>
+          on
+          <a href="https://woojiq.github.io">woojiq&#x27;s blog</a>
+      </small>
+    </h1>
+  <main>
+    <blockquote>
+<p>Article is translated with the assistance of ChatGPT.</p>
+</blockquote>
+<p>After writing the <a href="../am-i-actually-that-bad/">previous post</a> where I complained and tried to understand why, after submitting 50 resumes, I received 0 interview invitations, I was motivated to undertake a somewhat challenging and interesting project. However, the next morning, I saw some clarification questions in my email regarding the Embedded C/C++ position. I responded to them as I had done before — simply highlighting how great I am but admitting that I wasn’t very knowledgeable in networking. At that moment, I didn’t really care whether anything would come out of it. I received an invitation for a call with the recruiter, where he was supposed to explain some details. I deliberately chose not to schedule it on the same day to have some time for preparation (thinking it wasn’t just a recruiter conversation). After the conversation, I was invited to my first interview.</p>
+<p>In general, it’s not crucial what specific position it is, but for the sake of completeness, I’ll share. Since I’ve been actively using Linux for the past year, low-level jobs appeal to me, as I generally enjoy working with this operating system. The job title is “Embedded C/C++,” with a focus on networking programming. Prior to this, I had only worked with high-level protocols like HTTP and had some understanding of TCP.</p>
+<h2 id="preparation">Preparation<a class="zola-anchor" href="#preparation" aria-label="Anchor link for: preparation">#</a>
+</h2>
+<p>I was scheduled for an interview a week after the recruiter conversation, so I had plenty of time to prepare, especially considering that I was basically a novice in networking programming and Linux details. I use the <a rel="noopener" target="_blank" href="https://www.forestapp.cc/">Forest</a> app on my phone (similar to Pomodoro), and over the week, I logged approximately 27 productive hours. I spent almost all of that time reading and learning. In the last few days, a bit less, as I had covered the entire base, so there wasn’t much more to learn. During this week, I completed a <a rel="noopener" target="_blank" href="https://www.coursera.org/learn/computer-networking">course</a> on Coursera; wrote three small Bash <a rel="noopener" target="_blank" href="https://github.com/prajwalpd7/BashBlaze-7-Days-of-Bash-Scripting-Challenge/tree/main">scripts</a> to review syntax; read a mini-guide on <a rel="noopener" target="_blank" href="https://beej.us/guide/bgnet/">networking in C</a> and implemented several examples; explored cool Linux commands: strace, ss, tcpdump, traceroute, dig, etc; learned a bit about how Linux modules work; applied various <a rel="noopener" target="_blank" href="https://opensource.com/sites/default/files/gated-content/inter-process_communication_in_linux.pdf">IPC methods</a>: sockets, files, pipes, signals; read another book, <a rel="noopener" target="_blank" href="https://beej.us/guide/bgnet0/">Beej’s guide on networking</a>. Overall, looking at myself a week ago, I was a complete novice and felt quite clueless, but now I feel very knowledgeable. It’s great to see the progress, and even in case of a setback, I won’t be too disheartened because I’ve gained so much in this week. I don’t know how I would have faced the interview without these newfound skills; they now seem so fundamental, as if I couldn’t do without them. If I had another week, I might have delved more into OpenWRT, Cisco Packet Tracer, or something more detailed in Linux. Now I feel ready, and I hope for the best.</p>
+<h2 id="expectation">Expectation<a class="zola-anchor" href="#expectation" aria-label="Anchor link for: expectation">#</a>
+</h2>
+<p>The text up to this paragraph was written a day before my first interview, with the intention of capturing my thoughts and feelings. Well, and I don’t have much else to do right now. It would be great to land my first job after the initial interview; it would validate my words from the previous post about being “production ready”, but I simply didn’t have the opportunity to prove it. That would be nice, but even if things don’t work out, I’d at least like to be invited to a second round of interview, rather than being rejected after the first one, to get more practice. There could be challenges in general non-technical questions like “Why do you want to work for our company?” A small plus is that this will happen in my native language. While I’m proficient in English and can read, the last time I spoke with a native speaker was never. Overall, I assess my preparation at 8/10, with 10 being perfect for this specific position. I could have practiced a bit more with C and sockets, but theoretically, I think I know enough. The main thing is to fall asleep, because it is impossible to do this before important days. Also, I’ve had a hard time falling asleep this past week, as I’ve been sedentary and constantly imagined hypothetical situations before bed, such as someone telling me how smart and cool I am, making me an instant middle developer (I once wanted to start job hunting for junior position when technically I’d already be a mid-level in terms of knowledge).</p>
+<h2 id="outcomes-of-the-first-interview">Outcomes of the first interview<a class="zola-anchor" href="#outcomes-of-the-first-interview" aria-label="Anchor link for: outcomes-of-the-first-interview">#</a>
+</h2>
+<p>The first interview went almost perfectly, and I received an invitation for the second round. The date is not set yet, but I have time to prepare. Since the first one was more theoretical, I think the next one will involve writing some code. Since I’ve been writing almost exclusively in Rust for the past year, I’ll need to write a project in C within a few days - something around a thousand lines of code. Why I said the interview went almost perfectly is because I made a few really silly mistakes that I’m embarrassed about. There were quite a few theoretical questions, one of which was: “How to determine Big/Little Endian at runtime.” I understood that I needed to take a two-byte number and somehow read the first byte. However, I didn’t think to cast the pointer to type <code>char *</code>, so I gave up. That was the first mini-failure. I was asked to comment on a small Bash script, which I successfully did. At one point, I had to determine the complexity - I correctly said it was <code>O(n)</code>, but then for some reason, I changed my mind and said <code>O(1)</code> (awkward). The last task was a <a rel="noopener" target="_blank" href="https://www.quora.com/You-are-given-two-glass-balls-in-a-100-story-building-You-have-to-find-out-by-minimal-drops-which-is-the-lowest-floor-at-which-they-would-break-How-do-I-prove-it-mathematically">logical puzzle</a>:</p>
+<blockquote>
+<p>You are given two glass balls in a 100 story building. You have to find out by minimal drops which is the lowest floor at which they would break.</p>
+</blockquote>
+<p>I found the answer in 19 steps, making the 10th step. The most optimal answer is 14, which I didn’t think of, although the solution is not difficult.</p>
+<p>So, in about 50 minutes of conversation, I made three mistakes, which are not critical but a bit sad because I know I could have avoided the first two if I had thought more before saying something. Overall, I enjoyed the experience, and I understand that I have the knowledge for this position since the interview wasn’t difficult (because I know the material). I won’t speculate on anything in advance; I just need to practice a bit with C code before the next stage.</p>
+<h2 id="preparation-for-the-second-interview">Preparation for the second interview<a class="zola-anchor" href="#preparation-for-the-second-interview" aria-label="Anchor link for: preparation-for-the-second-interview">#</a>
+</h2>
+<p>So, I had about 10 days to prepare for the next stage. I wouldn’t say I accomplished a lot, but I wrote a <a rel="noopener" target="_blank" href="https://github.com/woojiq/wotils/tree/main/ping">ping</a> clone of almost 1000 lines. And it was quite useful; I had to use tcpdump to figure out why packets weren’t reaching me, delve into raw sockets, learn how to work with ipv6, understand icmp packets, and so on. Overall, I can say I’ve made progress and am ready for the next stage. And let’s not forget that I already have a streak of 30+ daily challenges on LeetCode, which I solved using C or C++. The next interview is in two hours. Over the past week, I realized that I’m about 50% eager to get the job, but also about 50% not very eager. Since July, I’ve been programming almost non-stop, grinding. And of course, it has its positive sides - I’ve become a much better version of myself. However, I’ve also compromised my health. So, I decided that before the New Year, it would be nice to take a break from programming for 2-4 weeks and relax because the grind starts again on January 2nd. I hope this mindset will only add confidence during the conversation because I won’t be too nervous, and whatever happens, happens. Regardless, I can say that I’ve developed significantly over the year, starting from scratch. I know my worth, and in any case, I won’t give up. Lightweight, baby.<br />
+P.S. I’ve realized that the C language, while very interesting because you have to write everything yourself, work directly with memory, and interact with the OS, has a significant downside: it’s challenging to live without namespaces, generics, RAII. Rust has a slight edge in this regard.</p>
+<h2 id="outcome">Outcome<a class="zola-anchor" href="#outcome" aria-label="Anchor link for: outcome">#</a>
+</h2>
+<p>Yeah buddy🦅. The second stage was basically similar to the previous one, but there were more questions about C, although there were still many about networks. Overall, I thought I was answering well, but since the communication wasn’t in my native language, it was a bit challenging to express my thoughts. They showed a snippet of code and asked how to improve it, and I think I handled it well. Then they asked a few questions about Rust, where I stumbled a bit. In general, I can say that I demonstrated a good level, but there were many nuances, so I can’t objectively evaluate it. But I didn’t care about the outcome.
+After a few hours, I received an email with the content “Invitation to Join Our Team,” where they informed me about the next meeting, where, as I understand, there will be a discussion about salary and other organizational details. Well, by then, I hope nothing will break because I’ve come this far. The only thing that slightly disappointed me was that they didn’t ask me to share my screen to write something. I think it could have better demonstrated my level. I believe that after I calculated the time complexity of the Dijkstra algorithm in my head, they understood that I mean business.</p>
+<h2 id="goodbye-carefree-days">Goodbye Carefree Days<a class="zola-anchor" href="#goodbye-carefree-days" aria-label="Anchor link for: goodbye-carefree-days">#</a>
+</h2>
+<p>I am now leaving the carefree world of programming, where I could write anything, anytime. I could easily switch between technologies. I have a new mindset - to approach work responsibly, not just to do the job but to do it consciously, and to constantly improve independently of it. Although perhaps these are just my rose-colored glasses that will come off after the first day. Whatever the case, I found a job after the first interview, and I can be proud of that. Once again, I’ve proven to myself that no matter how much unlucky you may be, hard work can change that. Honestly, I could have kept these articles to myself, but perhaps someone will recognize themselves in these lines, maybe it will help someone. I’ll go touch the grass outside. <a rel="noopener" target="_blank" href="https://www.youtube.com/shorts/IB7WVweJUV4">Suwy</a>.</p>
+
+  </main>
+<footer>
+  <small>
+    <a href="https://github.com/woojiq/woojiq.github.io">src</a> |
+    <a href="https://woojiq.github.io/blog/atom.xml">rss</a>
+  </small>
+</footer>
+</body>
+</html>

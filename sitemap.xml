@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://woojiq.github.io/</loc>
+    </url>
+    <url>
+        <loc>https://woojiq.github.io/about/</loc>
+    </url>
+    <url>
+        <loc>https://woojiq.github.io/blog/</loc>
+    </url>
+    <url>
+        <loc>https://woojiq.github.io/blog/am-i-actually-that-bad/</loc>
+        <lastmod>2023-11-01</lastmod>
+    </url>
+    <url>
+        <loc>https://woojiq.github.io/blog/job-from-the-first-try/</loc>
+        <lastmod>2023-11-23</lastmod>
+    </url>
+    <url>
+        <loc>https://woojiq.github.io/blog/my-first-patch/</loc>
+        <lastmod>2023-08-16</lastmod>
+    </url>
+</urlset>
